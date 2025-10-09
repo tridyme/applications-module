@@ -1,26 +1,39 @@
 {
   "name": "@tridyme/applications",
   "version": "0.0.1",
-  "description": "SDK for building Tridyme applications with webpack federation",
+  "description": "SDK for building Tridyme applications with React hooks and utilities",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --passWithNoTests",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "tridyme",
     "applications",
     "sdk",
-    "webpack-federation"
+    "react",
+    "hooks",
+    "typescript"
   ],
   "author": "Tridyme",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tridyme/applications-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tridyme/applications-sdk/issues"
+  },
+  "homepage": "https://github.com/tridyme/applications-sdk#readme",
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",

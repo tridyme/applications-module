@@ -1,12 +1,29 @@
 # @tridyme/applications
 
-SDK pour créer des applications de calcul Tridyme intégrées via Webpack Module Federation.
+SDK React pour créer des applications de calcul Tridyme avec hooks, utilitaires et composants UI.
+
+[![npm version](https://badge.fury.io/js/%40tridyme%2Fapplications.svg)](https://www.npmjs.com/package/@tridyme/applications)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Features
+
+- ✅ **Hook principal `useApplication`** - Gestion complète de l'état et des actions
+- ✅ **Hook `useUser`** - Gestion de l'utilisateur connecté
+- ✅ **Détection automatique** - Backend URL et contexte plateforme
+- ✅ **Services API** - Fonctions pour modèles et analyses
+- ✅ **Composants UI** - Ré-export de `@tridyme/react-components`
+- ✅ **TypeScript** - Types inclus pour une meilleure DX
 
 ## Installation
 
 ```bash
-npm install @tridyme/applications
+npm install @tridyme/applications @tridyme/react-components react react-dom axios
 ```
+
+**Peer dependencies:**
+- React 16.8+
+- axios 1.0+
+- @tridyme/react-components
 
 ## Utilisation
 
@@ -64,12 +81,55 @@ function Application({ match }) {
 export default Application;
 ```
 
-### Composants réutilisables
+### Hook `useUser`
 
-Le module réexporte tous les composants de `@tridyme/react-components` et `@tridyme/aec` :
+Gestion de l'utilisateur connecté :
 
 ```javascript
-import { ButtonElem, InputElem, CardElem } from '@tridyme/applications';
+import { useUser } from '@tridyme/applications';
+
+function MyComponent() {
+  const { user, userId, setUser } = useUser();
+
+  if (!user) {
+    return <div>Non connecté</div>;
+  }
+
+  return <div>Bienvenue {user.name} (ID: {userId})</div>;
+}
+```
+
+### Détection du contexte plateforme
+
+```javascript
+import { isPlatformContext } from '@tridyme/applications';
+
+function MyApp() {
+  const isOnPlatform = isPlatformContext();
+
+  return (
+    <div>
+      {isOnPlatform ? (
+        <div>Application intégrée à la plateforme</div>
+      ) : (
+        <div>Application standalone</div>
+      )}
+    </div>
+  );
+}
+```
+
+### Composants réutilisables
+
+Le module réexporte tous les composants de `@tridyme/react-components` :
+
+```javascript
+import {
+  ButtonElem,
+  InputElem,
+  CardElem,
+  InputTableElem
+} from '@tridyme/applications';
 ```
 
 ### Services utilitaires
