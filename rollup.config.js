@@ -24,11 +24,10 @@ export default {
     'react',
     'react-dom',
     'axios',
-    '@tridyme/react-components',
-    '@tridyme/aec',
+    // '@tridyme/aec',
   ],
   plugins: [
-    resolve(),
+    resolve({ browser: true }),
     commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
