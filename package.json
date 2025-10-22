@@ -1,6 +1,6 @@
 {
   "name": "@tridyme/applications",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SDK for building Tridyme applications with React hooks and utilities",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -40,7 +40,7 @@
     "axios": "^1.0.0"
   },
   "dependencies": {
-   "@tridyme/react-components": "*"
+    "@tridyme/react-components": "*"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
