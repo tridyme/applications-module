@@ -14,7 +14,28 @@ import { detectBackendUrl, getModel, saveModel, runAnalysis } from '../utils';
 export const useApplication = (
   options: UseApplicationOptions
 ): UseApplicationReturn => {
-  const { initialState, match, config = {} } = options;
+  const { initialState, match, config = {}, navigate } = options;
+
+  useEffect(() => {
+    if (!match || !initialState) {
+      console.error('[useApplication] options "match" et "initialState" sont obligatoires.');
+      setSnackbar({
+        open: true,
+        message: 'Paramètres obligatoires manquants : match ou initialState',
+        severity: 'error',
+      });
+    }
+    
+    if (!navigate) {
+      console.warn('[useApplication] option "navigate" non fournie, navigation désactivée.');
+      setSnackbar({
+        open: true,
+        message: 'Option navigate non fournie, navigation désactivée',
+        severity: 'warning',
+      });
+    }
+  }, []);
+
   const { params } = match;
   const { applicationId, modelId: routeModelId, projectId } = params;
 
@@ -34,7 +55,7 @@ export const useApplication = (
     message: '',
     severity: 'success' as 'success' | 'error' | 'info' | 'warning',
   });
-
+  
   // Initialisation au montage du composant
   useEffect(() => {
     const init = async () => {
@@ -125,7 +146,11 @@ export const useApplication = (
             const newPath = projectId
               ? `/projects/${projectId}/applications/${applicationId}/models/${savedModel.id}`
               : `/applications/${applicationId}/models/${savedModel.id}`;
-            (window as any).history.push(newPath);
+            if (navigate) {
+              navigate(newPath);
+            } else {
+              window.history.pushState(null, '', newPath);
+            }
           }
 
           setSnackbar({

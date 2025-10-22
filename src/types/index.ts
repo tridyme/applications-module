@@ -3,7 +3,7 @@ export interface TridymeApplicationState {
 }
 
 export interface TridymeModel {
-  id?: string;
+  _id?: string;
   projectId?: string;
   name: string;
   application: string;
@@ -30,6 +30,7 @@ export interface UseApplicationOptions {
     params: TridymeRouteParams;
   };
   config?: TridymeApplicationConfig;
+  navigate?: (to: string) => void;
 }
 
 export interface UseApplicationReturn {
