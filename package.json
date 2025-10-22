@@ -1,6 +1,6 @@
 {
   "name": "@tridyme/applications",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "SDK for building Tridyme applications with React hooks and utilities",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
