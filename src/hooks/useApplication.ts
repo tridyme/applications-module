@@ -128,7 +128,7 @@ export const useApplication = (
 
       if (modelId && modelId !== 'new') {
         // Mise à jour d'un modèle existant
-        const updatedModel = { id: modelId, ...model };
+        const updatedModel = { _id: modelId, ...model };
         await saveModel(updatedModel, currentUrl);
         setSnackbar({
           open: true,
@@ -138,14 +138,14 @@ export const useApplication = (
       } else {
         // Création d'un nouveau modèle
         const savedModel = await saveModel(model, currentUrl);
-        if (savedModel?.id) {
-          setModelId(savedModel.id);
+        if (savedModel?._id) {
+          setModelId(savedModel._id);
 
           // Mettre à jour l'URL si history est disponible
           if (typeof window !== 'undefined' && (window as any).history) {
             const newPath = projectId
-              ? `/projects/${projectId}/applications/${applicationId}/models/${savedModel.id}`
-              : `/applications/${applicationId}/models/${savedModel.id}`;
+              ? `/projects/${projectId}/applications/${applicationId}/models/${savedModel._id}`
+              : `/applications/${applicationId}/models/${savedModel._id}`;
             if (navigate) {
               navigate(newPath);
             } else {
