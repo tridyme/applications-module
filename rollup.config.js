@@ -24,6 +24,7 @@ export default {
     'react',
     'react-dom',
     'axios',
+    '@tridyme/react-components',
     // '@tridyme/aec',
   ],
   plugins: [
